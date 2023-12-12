@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-aks
+  labels:
+    app: hello-world-aks
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  - port: 443
+    targetPort: 80
+    protocol: TCP
+    name: https
+  selector:
+    app: hello-world-aks
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-aks-deployment
+  labels:
+    app: hello-world-aks
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world-aks
+  template:
+    metadata:
+      labels:
+        app: hello-world-aks
+    spec:
+      containers:
+      - name: hello-world-aks
+        image: fahmi75/hello-world-aks:v1
+        ports:
+        - containerPort: 80

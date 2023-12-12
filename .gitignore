@@ -1,0 +1,14 @@
+# Drawio Files
+
+media/*.bkp
+media/*.drawio.dtmp
+
+
+# Ignore Terraform files 
+
+terraform/.terraform*
+terraform/.terraform.lock*
+terraform/*.tfstate
+terraform/*.tfstate.*
+# terraform/*.tfvars
+terraform/*.tfvars.json
